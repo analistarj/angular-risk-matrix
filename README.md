@@ -1,3 +1,13 @@
+# angular-risk-matrix, fork de estudo
+
+> Fork oficial do projeto [JoeHogan/angular-risk-matrix](https://github.com/JoeHogan/angular-risk-matrix).
+
+Este repositório é mantido apenas como referência de estudo. O código e a documentação original pertencem a Joe Hogan e aos respectivos contribuidores. Não há, neste momento, alterações autorais relevantes de Alan Nogueira.
+
+A documentação original do projeto é preservada abaixo.
+
+---
+
 # angular-risk-matrix
 A simple Risk Matrix chart for AngularJS
 
@@ -34,69 +44,66 @@ angular.module('myModule', ['riskMatrix']);
 
 ###### data
 
-An array of your risk data objects with the following property structure (at a minimum):
+An array of your risk data objects with the following property structure, at a minimum:
 
-````
+```javascript
 $scope.data.risks = [
-	{
-		Id: 1,
-		RiskLikelihood: 'High',
-		RiskImpact: 'Low'
-	},
-	{
-		Id: 2,
-		RiskLikelihood: 'Medium',
-		RiskImpact: 'High'
-	},
-	{
-		Id: 3,
-		RiskLikelihood: 'Low',
-		RiskImpact: 'Very High'
-	},
-	{
-		Id: 4,
-		RiskLikelihood: 'Very High',
-		RiskImpact: 'Very High'
-	}
+    {
+        Id: 1,
+        RiskLikelihood: 'High',
+        RiskImpact: 'Low'
+    },
+    {
+        Id: 2,
+        RiskLikelihood: 'Medium',
+        RiskImpact: 'High'
+    },
+    {
+        Id: 3,
+        RiskLikelihood: 'Low',
+        RiskImpact: 'Very High'
+    },
+    {
+        Id: 4,
+        RiskLikelihood: 'Very High',
+        RiskImpact: 'Very High'
+    }
 ];
-````
+```
 
 ###### likelihood
 
-An array of 5 likelihood values from low to high corresponding with your data, for example:
+An array of five likelihood values from low to high corresponding with your data:
 
-```
+```javascript
 $scope.data.likelihoodValues = [
-	'Very Low','Low','Medium','High','Very High'
+    'Very Low', 'Low', 'Medium', 'High', 'Very High'
 ];
 ```
-You can change these values to correspond with the five values you are using to quantify likelihood.
 
 ###### impact
 
-An array of 5 impact values from low to high corresponding with your data, for example:
+An array of five impact values from low to high corresponding with your data:
 
-```
+```javascript
 $scope.data.impactValues = [
-	'Very Low','Low','Medium','High','Very High'
+    'Very Low', 'Low', 'Medium', 'High', 'Very High'
 ];
 ```
-You can change these values to correspond with the five values you are using to quantify impact.
 
 ##### Optional
 
 ###### template
 
-You can optionally define your own template string which will be compiled. The template controlls the format of the html of the risk item displayed on the risk matrix.
+You can define a template string that will be compiled. Use `item` to refer to the current risk item:
 
-Use 'item' to refer to the current risk item:
+```html
+<risk-matrix
+  data="data.risks"
+  likelihood="data.likelihoodValues"
+  impact="data.impactValues"
+  template="data.riskTemplate">
+</risk-matrix>
+```
 
-```
-<risk-matrix data="data.risks" likelihood="data.likelihoodValues" impact="data.impactValues" template="data.riskTemplate"></risk-matrix>
-```
-
-```
-$scope.data.riskTemplate = '<div class="closed"><span ng-bind="item.Id"></span></div><div class="open"><div class="title" ng-bind="item.Title"></div><div ng-bind="\'Likelihood: \'+item.RiskLikelihood"></div><div ng-bind="\'Impact: \'+item.RiskImpact"></div><div ng-bind="\'Priority: \'+item.Priority"></div></div>';
-```
-
-Example using template: http://jsfiddle.net/joehogan/6xqkwf8p/3/
+Original template example: http://jsfiddle.net/joehogan/6xqkwf8p/3/
